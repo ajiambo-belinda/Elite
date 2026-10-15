@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elite Drive - Book your seat online</title>
+  <link rel="stylesheet" href="Styles.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="site-header">
+    <nav class="nav">
+      <a href="#home" class="logo"> Elite <span>Drive</span></a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Book a seat</a></li>
+        <li><a href="#myTicket">My ticket</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <
+  <section class="hero" id="home" aria-label="Elite Drive"></section>
+
+  <!-- Search card -->
+  <div class="search-wrap">
+    <form class="search-card" id="searchForm">
+
+      <div class="tabs">
+        <label><input type="radio" name="service" value="passenger" checked> Passenger</label>
+        <label><input type="radio" name="service" value="parcel" disabled> Parcel (soon)</label>
+      </div>
+
+      <div class="search-bar">
+        <div>
+          <label for="from">From</label>
+          <select id="from"></select>
+        </div>
+        <div>
+          <label for="to">To</label>
+          <select id="to"></select>
+        </div>
+        <div>
+          <label for="date">Travel date</label>
+          <div class="datebox">
+            <input type="date" id="date" required>
+            <button type="button" class="chip" data-days="0">Today</button>
+            <button type="button" class="chip" data-days="1">Tomorrow</button>
+          </div>
+        </div>
+        <button type="submit" class="search-btn">SEARCH</button>
+      </div>
+
+      <p class="err" id="searchErr"></p>
+    </form>
+  </div>
+
+  <main>
+
+    <!--  available rides -->
+    <section class="screen" id="screenTrips" hidden>
+      <h2 id="tripsTitle">Available rides</h2>
+      <div class="grid" id="tripList"></div>
+    </section>
+
+    <!--  choose seats -->
+    <section class="screen" id="screenSeats" hidden>
+      <button class="ghost back" data-back="screenTrips">← Back</button>
+      <h2>Choose your seat(s)</h2>
+      <p class="meta" id="tripSummary"></p>
+
+      <div class="panel">
+        <div class="legend">
+          <span><i class="dot free"></i> Free</span>
+          <span><i class="dot picked"></i> Yours</span>
+          <span><i class="dot taken"></i> Taken</span>
+        </div>
+        <div class="seatmap" id="seatMap"></div>
+      </div>
+
+      <div class="panel bar">
+        <p id="seatSummary">No seats selected</p>
+        <button id="toDetails" disabled>Continue</button>
+      </div>
+    </section>
+
+    <!--  passenger details and payment -->
+    <section class="screen" id="screenPay" hidden>
+      <button class="ghost back" data-back="screenSeats">← Back</button>
+      <h2>Your details</h2>
+
+      <div class="panel" id="orderSummary"></div>
+
+      <form class="panel" id="payForm">
+        <div class="field">
+          <label for="pname">Full name</label>
+          <input type="text" id="pname" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="pphone">M-Pesa phone number</label>
+          <input type="tel" id="pphone" placeholder="07XX XXX XXX" autocomplete="tel" required>
+        </div>
+        <p class="err" id="payErr"></p>
+        <button type="submit" class="full">Pay with M-Pesa</button>
+      </form>
+    </section>
+
+    <!-- Screen 4: payment done, message sent -->
+    <section class="screen" id="screenDone" hidden>
+      <div class="success"> Payment received</div>
+      <p class="note" id="smsNote"></p>
+
+      <p class="note">Preview of the message sent to your phone:</p>
+      <div class="message-bubble" id="messageBox"></div>
+
+      <div class="receipt-actions">
+        <a class="btn" id="openTicket" href="#">Open my ticket</a>
+        <button class="ghost" id="copyLink">Copy link</button>
+        <a class="btn" id="waLink" href="#" target="_blank" rel="noopener">Send to WhatsApp</a>
+      </div>
+    </section>
+
+    <!-- Find a ticket later -->
+    <section class="panel" id="myTicket">
+      <h2>Find my ticket</h2>
+      <form id="findForm">
+        <div class="filters">
+          <div>
+            <label for="findRef">Booking reference</label>
+            <input type="text" id="findRef" placeholder="e.g. ED7F3K2A">
+          </div>
+          <div>
+            <label for="findPhone">Phone number used</label>
+            <input type="tel" id="findPhone" placeholder="07XX XXX XXX">
+          </div>
+        </div>
+        <button type="submit">Find ticket</button>
+      </form>
+      <div id="findResult"></div>
+    </section>
+
+  </main>
+
+  <!-- Amenities -->
+  <section class="amenities" id="about">
+    <h2>Amenities</h2>
+    <p class="meta">Travel anywhere in Kenya with Elite Drive.</p>
+    <div class="amenity-grid">
+      <div class="amenity"><span></span><b>Choose your seat</b></div>
+      <div class="amenity"><span></span><b>Pay with M-Pesa</b></div>
+      <div class="amenity"><span></span><b>Ticket sent to your phone</b></div>
+      <div class="amenity"><span></span><b>Routes across Kenya</b></div>
+      <div class="amenity"><span></span><b>Comfortable rides</b></div>
+    </div>
+  </section>
+
+  <!-- Payment progress pop-up -->
+  <dialog id="payDlg">
+    <div id="payDlgBody"></div>
+  </dialog>
+
+  <!-- Footer -->
+  <footer class="site-footer" id="contact">
+    <div class="footer-grid">
+      <div>
+        <h3>Elite Drive</h3>
+        <p>Comfortable seats between towns across Kenya. Book in minutes.</p>
+      </div>
+      <div>
+        <h3>Quick links</h3>
+        <ul>
+          <li><a href="#home">Book a seat</a></li>
+          <li><a href="#myTicket">My ticket</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <p> Nairobi, Kenya</p>
+        <p> +254 100 000 000</p>
+        <p> info@elitedrive.co.ke</p>
+      </div>
+    </div>
+    <p class="copyright">© 2026 Elite Drive.</p>
+  </footer>
+  <script src="Script.js"></script>
+</body>
+</html>

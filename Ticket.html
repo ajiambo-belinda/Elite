@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Elite Drive ticket</title>
+  <link rel="stylesheet" href="Styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav">
+      <a href="index.html" class="logo"> Elite <span>Drive</span></a>
+    </nav>
+  </header>
+
+  <main class="ticket-page">
+    <div class="panel receipt" id="ticketBox"></div>
+
+    <div class="receipt-actions" id="ticketActions" hidden>
+      <button id="dlImage">⬇ Save ticket to phone</button>
+      <button id="shareBtn" class="ghost" hidden>Share</button>
+      <button id="printBtn" class="ghost">Print / Save as PDF</button>
+    </div>
+
+    <p class="note">Can't print? No problem. Show this ticket, or the message we sent you, to the driver when boarding.</p>
+    
+  </main>
+
+  <script src="ticket.js"></script>
+</body>
+</html>
